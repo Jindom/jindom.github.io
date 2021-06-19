@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux常用操作命令 | Jindom's Blog</title><meta name="author" content="Jindom"><meta name="copyright" content="Jindom"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Cd –进入cd .. &#x2F;&#x2F;返回上一级 cd &#x2F;xx&#x2F;xx  &#x2F;&#x2F;进入xx文件夹的xx文件夹,常与Ls搭配使用 mkdir –创建文件夹在当前目录下创建一个测试文件夹：mkdir test touch –创建文件在当前目录下创建一个叫test.txt的文件：touch test.txt 在&#x2F;home目录下创建一个叫demo.txt的文件：touch &#x2F;home&#x2F;demo.txt cp –复制或重命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用操作命令">
+<meta property="og:url" content="https://blog.jinzz.cc/375b069ba3d0/index.html">
+<meta property="og:site_name" content="Jindom&#39;s Blog">
+<meta property="og:description" content="Cd –进入cd .. &#x2F;&#x2F;返回上一级 cd &#x2F;xx&#x2F;xx  &#x2F;&#x2F;进入xx文件夹的xx文件夹,常与Ls搭配使用 mkdir –创建文件夹在当前目录下创建一个测试文件夹：mkdir test touch –创建文件在当前目录下创建一个叫test.txt的文件：touch test.txt 在&#x2F;home目录下创建一个叫demo.txt的文件：touch &#x2F;home&#x2F;demo.txt cp –复制或重命">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.jinzz.cc/images/cover1.jpg">
+<meta property="article:published_time" content="2017-02-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-01T08:43:16.045Z">
+<meta property="article:author" content="Jindom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.jinzz.cc/images/cover1.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://blog.jinzz.cc/375b069ba3d0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux常用操作命令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-01 16:43:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/cover1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jindom's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux常用操作命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-02-12T00:00:00.000Z" title="发表于 2017-02-12 08:00:00">2017-02-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T08:43:16.045Z" title="更新于 2021-06-01 16:43:16">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux常用操作命令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Cd-–进入"><a href="#Cd-–进入" class="headerlink" title="Cd –进入"></a><strong>Cd –进入</strong></h2><p>cd .. //返回上一级</p>
+<p>cd /xx/xx  //进入xx文件夹的xx文件夹,常与Ls搭配使用</p>
+<h2 id="mkdir-–创建文件夹"><a href="#mkdir-–创建文件夹" class="headerlink" title="mkdir –创建文件夹"></a><strong>mkdir –创建文件夹</strong></h2><p>在当前目录下创建一个测试文件夹：mkdir test</p>
+<h2 id="touch-–创建文件"><a href="#touch-–创建文件" class="headerlink" title="touch –创建文件"></a><strong>touch –创建文件</strong></h2><p>在当前目录下创建一个叫test.txt的文件：<code>touch test.txt</code> 在/home目录下创建一个叫demo.txt的文件：<code>touch /home/demo.txt</code></p>
+<h2 id="cp-–复制或重命名"><a href="#cp-–复制或重命名" class="headerlink" title="cp –复制或重命名"></a><strong>cp –复制或重命名</strong></h2><p>将当前目录下的test.txt重全名为demo.txt：<code>cp test.txt demo.txt</code> 复制当前目录下的test.txt到/home目录：<code>cp test.txt /home/</code> 复制当前目录下的test.txt到/home目录并重命名为demo.txt：<code>cp test.txt /home/demo.txt</code> 复制当前目录下的test文件夹所有的东东到/home目录下：<code>cp -R test /home/</code> 复制当前目录下的test文件夹所有的东东到/home目录的demo文件夹下：<code>cp -R test /home/demo</code></p>
+<h2 id="mv-–移动或重命名"><a href="#mv-–移动或重命名" class="headerlink" title="mv –移动或重命名"></a><strong>mv –移动或重命名</strong></h2><p>将当前目录下的test.txt重命名为demo.txt：<code>mv test.txt demo.txt</code> 将当前目录下的test.txt移动到/home目录：<code>mv test.txt /home/</code> 将当前目录下的test.txt移动到/home目录并重命名为demo.txt：<code>mv test.txt /home/demo.txt</code> 将当前目录下的test文件夹所有东东移动到/home目录下：<code>mv test /home/</code> 将当前目录下的test文件夹所有东东移动到/home目录下的demo文件夹下：<code>mv test /home/demo</code> 其实 mv 和 cp 操作很相似。</p>
+<h2 id="rm-–删除文件或文件夹"><a href="#rm-–删除文件或文件夹" class="headerlink" title="rm –删除文件或文件夹"></a><strong>rm –删除文件或文件夹</strong></h2><p>删除当前目录下的test.txt：<code>rm test.txt</code>，之后会提示是否删除，输入Y回车即可 强制删除当前目录下的test.txt：<code>rm -f test.txt</code> 删除当前目录下的test文件夹：<code>rm -r test</code>，之后会提示是否删除，输入Y回车即可 强制删除当前目录的test文件夹：<code>rm -rf test</code> 另外说一下，可能很多新手肯定会被忽悠过去尝试使用<code>rm -rf /*</code>，有些东东就是不能过于好奇。</p>
+<h2 id="Vim-–编辑"><a href="#Vim-–编辑" class="headerlink" title="Vim –编辑"></a><strong>Vim –编辑</strong></h2><p>和vi差不多的文本编辑器,是vi的升级和补完</p>
+<p><strong>按Esc进入操作选择模式</strong></p>
+<p>:wq //write and quit</p>
+<p>:q // quit</p>
+<p>:wq! // write and quit !</p>
+<p>:q! // quit !</p>
+<p>/xxx //在光标下文中寻找xxx</p>
+<p>?xxx //在光标上文中寻找xxx</p>
+<p><strong>按 a/i/o键 进入文本编辑模式</strong></p>
+<p>Pageup和Pagedown可以快速翻页</p>
+<h2 id="Wget-–下载"><a href="#Wget-–下载" class="headerlink" title="Wget –下载"></a><strong>Wget –下载</strong></h2><p>用来从互联网上下东西</p>
+<p>Wget <a target="_blank" rel="noopener" href="http://www.jinzz.net/123.zip">http://www.jinzz.net/123.zip</a></p>
+<p>下下来默认保存在root文件夹</p>
+<h2 id="Tar-–压缩与解压缩"><a href="#Tar-–压缩与解压缩" class="headerlink" title="Tar –压缩与解压缩"></a><strong>Tar –压缩与解压缩</strong></h2><p><a target="_blank" rel="noopener" href="https://www.91yun.co/archives/138">https://www.91yun.co/archives/138</a></p>
+<p>-c: 建立压缩档案 -x：解压 -t：查看内容 -r：向压缩归档文件末尾追加文件 -u：更新原压缩包中的文件</p>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<p>-z：有gzip属性的 -j：有bz2属性的 -Z：有compress属性的 -v：显示所有过程 -O：将文件解开到标准输出</p>
+<p>下面的参数-f是必须的</p>
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<p># tar -cf all.tar *.jpg 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<p># tar -rf all.tar *.gif 这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<p># tar -uf all.tar logo.gif 这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<p># tar -tf all.tar 这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<p># tar -xf all.tar 这条命令是解出all.tar包中所有文件，-t是解开的意思</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a><strong>压缩</strong></h3><p>tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</p>
+<p>tar -czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p>tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p>tar -cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</p>
+<p>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</p>
+<p><strong>在后面加上/xxx/xxx可以指定路径</strong></p>
+<p><strong>如:tar -cvf <a target="_blank" rel="noopener" href="http://www.tar/">www.tar</a> /data/www //将/data/www这个文件夹压缩为<a target="_blank" rel="noopener" href="http://www.tar并放在当前目录下/">www.tar并放在当前目录下</a></strong></p>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a><strong>解压</strong></h3><p>tar -xvf file.tar //解压 tar包</p>
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+<p>tar -xjvf file.tar.bz2   //解压 tar.bz2</p>
+<p>tar -xZvf file.tar.Z   //解压tar.Z</p>
+<p>unrar e file.rar //解压rar</p>
+<p>unzip file.zip //解压zip</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>1、*.tar 用 tar -xvf 解压</p>
+<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
+<p>3、*.tar.gz和*.tgz 用 tar -xzf 解压</p>
+<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
+<p>5、*.tar.bz2用tar -xjf 解压</p>
+<p>6、*.Z 用 uncompress 解压</p>
+<p>7、*.tar.Z 用tar -xZf 解压</p>
+<p>8、*.rar 用 unrar e解压</p>
+<p>9、*.zip 用 unzip 解压</p>
+<p> </p>
+<h2 id="CUT-—数据分拣"><a href="#CUT-—数据分拣" class="headerlink" title="CUT —数据分拣"></a><strong>CUT —数据分拣</strong></h2><p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/QQ%E6%8B%BC%E9%9F%B3%E6%88%AA%E5%9B%BE20171009103605.png"></p>
+<p>cut -d “ “ -f 3 // -d “ “ 理解为divide by 这里的意思是以空格为分割</p>
+<p>// -f 3   理解为field 3  就是以空格为分割的第三块内容</p>
+<p> </p>
+<p> </p>
+<h2 id="UNIQ以及SORT"><a href="#UNIQ以及SORT" class="headerlink" title="UNIQ以及SORT"></a><strong>UNIQ以及SORT</strong></h2><p>uniq 命令不加argment的意思为去掉连续重复的</p>
+<p>sort -u 去掉所有重复的内容</p>
+<p> </p>
+<h2 id="Yum-–安装"><a href="#Yum-–安装" class="headerlink" title="Yum –安装"></a><strong>Yum –安装</strong></h2><p>Yum -y xxx 自动下载安装xxx // -y的意思是自动同意</p>
+<h2 id="Ls-–列出"><a href="#Ls-–列出" class="headerlink" title="Ls –列出"></a><strong>Ls –列出</strong></h2><h2 id="Locate-–低精度查找"><a href="#Locate-–低精度查找" class="headerlink" title="Locate –低精度查找"></a><strong>Locate –低精度查找</strong></h2><p>贼鸡儿好用,和百度感觉差不多,啥东西想不起来在哪了locate一下</p>
+<h2 id="Find-–高精度查找"><a href="#Find-–高精度查找" class="headerlink" title="Find –高精度查找"></a><strong>Find –高精度查找</strong></h2><p>find / -name ‘*vsftpd*‘   //删除所有和vsftpd有关的文件</p>
+<p>其他具体用法不咋了解</p>
+<h2 id="xxx-sh-–运行sh"><a href="#xxx-sh-–运行sh" class="headerlink" title="./xxx.sh –运行sh"></a><strong>./xxx.sh –运行sh</strong></h2><p> </p>
+<h2 id="Linux开机启动项文件"><a href="#Linux开机启动项文件" class="headerlink" title="Linux开机启动项文件"></a><strong>Linux开机启动项文件</strong></h2><p>vim /etc/rc.local</p>
+<p>注:慢慢再被弃用,首先得给这个文件777权限才能正常开机运行</p>
+<h2 id="SCREEN-–命令行终端切换"><a href="#SCREEN-–命令行终端切换" class="headerlink" title="SCREEN –命令行终端切换"></a><strong>SCREEN –命令行终端切换</strong></h2><h4 id="安装-screen"><a href="#安装-screen" class="headerlink" title="安装 screen"></a>安装 screen</h4><p>如果是 centos ：</p>
+<p>yum install -y screen</p>
+<p>如果是 debian 或者 ubuntu ：</p>
+<p>apt-get update apt-get install -y screen</p>
+<h4 id="第二步：在运行长时间的程序之前，先创建一个-screen"><a href="#第二步：在运行长时间的程序之前，先创建一个-screen" class="headerlink" title="第二步：在运行长时间的程序之前，先创建一个 screen"></a>第二步：在运行长时间的程序之前，先创建一个 screen</h4><p> screen -S 随便什么名字</p>
+<p>比如如果是安装 lamp ，你可以写： screen -S lamp   这个后面跟着的只是一个名称，你可以随便取你喜欢的。另外注意，这个参数是大写的 S 。</p>
+<p>创建完，你会看到屏幕清空了，这时你就可以运行你要运行的程序了。</p>
+<h4 id="第三步：如果断开连接后重新连上服务器后，要恢复-screen-的话"><a href="#第三步：如果断开连接后重新连上服务器后，要恢复-screen-的话" class="headerlink" title="第三步：如果断开连接后重新连上服务器后，要恢复 screen 的话"></a>第三步：如果断开连接后重新连上服务器后，要恢复 screen 的话</h4><h5 id="首先查看下-screen-是否正常运行，列出所有-screen-进程："><a href="#首先查看下-screen-是否正常运行，列出所有-screen-进程：" class="headerlink" title="首先查看下 screen 是否正常运行，列出所有 screen 进程："></a>首先查看下 screen 是否正常运行，列出所有 screen 进程：</h5><p>screen -ls</p>
+<p><a target="_blank" rel="noopener" href="https://i1.wp.com/www.91yun.org/wp-content/uploads/2016/03/QQ%E5%9B%BE%E7%89%8720160324040945.png?ssl=1"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i1.wp.com/www.91yun.org/wp-content/uploads/2016/03/QQ%E5%9B%BE%E7%89%8720160324040945.png?resize=275,155&ssl=1" alt="screen"></a></p>
+<p>你看，我这里正在运行着我的测试一键包。。因为要测试半个小时左右。。。</p>
+<h3 id="恢复某个-screen-进程："><a href="#恢复某个-screen-进程：" class="headerlink" title="恢复某个 screen 进程："></a>恢复某个 screen 进程：</h3><p><a target="_blank" rel="noopener" href="https://i2.wp.com/www.91yun.org/wp-content/uploads/2016/03/QQ%E5%9B%BE%E7%89%8720160324041019.png?ssl=1"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i2.wp.com/www.91yun.org/wp-content/uploads/2016/03/QQ%E5%9B%BE%E7%89%8720160324041019.png?resize=304,122&ssl=1" alt="screen"></a></p>
+<p>看到没， screen -r 加入前面的进程数字就可以了。我的就是</p>
+<p>screen -r 1225</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Jindom</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.jinzz.cc/375b069ba3d0/">https://blog.jinzz.cc/375b069ba3d0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.jinzz.cc" target="_blank">Jindom's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/1afcec1afe30/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover20.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Iptables以及Firewall</div></div></a></div><div class="next-post pull-right"><a href="/a1655009a833/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">安装部署LAMP</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Jindom</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jindom"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jindom" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jinzz@jinzz.cc" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cd-%E2%80%93%E8%BF%9B%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">Cd –进入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir-%E2%80%93%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.</span> <span class="toc-text">mkdir –创建文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch-%E2%80%93%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">touch –创建文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp-%E2%80%93%E5%A4%8D%E5%88%B6%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-number">4.</span> <span class="toc-text">cp –复制或重命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv-%E2%80%93%E7%A7%BB%E5%8A%A8%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-number">5.</span> <span class="toc-text">mv –移动或重命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm-%E2%80%93%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">6.</span> <span class="toc-text">rm –删除文件或文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim-%E2%80%93%E7%BC%96%E8%BE%91"><span class="toc-number">7.</span> <span class="toc-text">Vim –编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wget-%E2%80%93%E4%B8%8B%E8%BD%BD"><span class="toc-number">8.</span> <span class="toc-text">Wget –下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tar-%E2%80%93%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">9.</span> <span class="toc-text">Tar –压缩与解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9"><span class="toc-number">9.1.</span> <span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B"><span class="toc-number">9.2.</span> <span class="toc-text">解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.3.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUT-%E2%80%94%E6%95%B0%E6%8D%AE%E5%88%86%E6%8B%A3"><span class="toc-number">10.</span> <span class="toc-text">CUT —数据分拣</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UNIQ%E4%BB%A5%E5%8F%8ASORT"><span class="toc-number">11.</span> <span class="toc-text">UNIQ以及SORT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yum-%E2%80%93%E5%AE%89%E8%A3%85"><span class="toc-number">12.</span> <span class="toc-text">Yum –安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ls-%E2%80%93%E5%88%97%E5%87%BA"><span class="toc-number">13.</span> <span class="toc-text">Ls –列出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Locate-%E2%80%93%E4%BD%8E%E7%B2%BE%E5%BA%A6%E6%9F%A5%E6%89%BE"><span class="toc-number">14.</span> <span class="toc-text">Locate –低精度查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Find-%E2%80%93%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%9F%A5%E6%89%BE"><span class="toc-number">15.</span> <span class="toc-text">Find –高精度查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxx-sh-%E2%80%93%E8%BF%90%E8%A1%8Csh"><span class="toc-number">16.</span> <span class="toc-text">.&#x2F;xxx.sh –运行sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">Linux开机启动项文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCREEN-%E2%80%93%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BB%88%E7%AB%AF%E5%88%87%E6%8D%A2"><span class="toc-number">18.</span> <span class="toc-text">SCREEN –命令行终端切换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-screen"><span class="toc-number">18.0.1.</span> <span class="toc-text">安装 screen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%9C%A8%E8%BF%90%E8%A1%8C%E9%95%BF%E6%97%B6%E9%97%B4%E7%9A%84%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%85%88%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-screen"><span class="toc-number">18.0.2.</span> <span class="toc-text">第二步：在运行长时间的程序之前，先创建一个 screen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5%E5%90%8E%E9%87%8D%E6%96%B0%E8%BF%9E%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%EF%BC%8C%E8%A6%81%E6%81%A2%E5%A4%8D-screen-%E7%9A%84%E8%AF%9D"><span class="toc-number">18.0.3.</span> <span class="toc-text">第三步：如果断开连接后重新连上服务器后，要恢复 screen 的话</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E6%9F%A5%E7%9C%8B%E4%B8%8B-screen-%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C%EF%BC%8C%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89-screen-%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-number">18.0.3.1.</span> <span class="toc-text">首先查看下 screen 是否正常运行，列出所有 screen 进程：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E6%9F%90%E4%B8%AA-screen-%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-number">18.1.</span> <span class="toc-text">恢复某个 screen 进程：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/333a4773e2de/" title="Hi Hexo!"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hi Hexo!"/></a><div class="content"><a class="title" href="/333a4773e2de/" title="Hi Hexo!">Hi Hexo!</a><time datetime="2021-06-03T16:00:00.000Z" title="发表于 2021-06-04 00:00:00">2021-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx启用Alt-Svc加速网站访问速度"/></a><div class="content"><a class="title" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度">Nginx启用Alt-Svc加速网站访问速度</a><time datetime="2021-02-20T00:00:00.000Z" title="发表于 2021-02-20 08:00:00">2021-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AD拿域控权限的方法整理"/></a><div class="content"><a class="title" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理">AD拿域控权限的方法整理</a><time datetime="2020-10-26T00:00:00.000Z" title="发表于 2020-10-26 08:00:00">2020-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"/></a><div class="content"><a class="title" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署">Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署</a><time datetime="2020-09-24T00:00:00.000Z" title="发表于 2020-09-24 08:00:00">2020-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/f5858198c6fa/" title="蓝队实战笔记"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝队实战笔记"/></a><div class="content"><a class="title" href="/f5858198c6fa/" title="蓝队实战笔记">蓝队实战笔记</a><time datetime="2020-08-15T00:00:00.000Z" title="发表于 2020-08-15 08:00:00">2020-08-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;1949 - 2021 By Jindom</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/eucyopvw8zt034ovoshroc4kci4qpweh.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

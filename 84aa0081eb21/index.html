@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>记一次灾难性的mysql数据恢复 | Jindom's Blog</title><meta name="author" content="Jindom"><meta name="copyright" content="Jindom"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="2018年5月21日，吃饱了没事干，想搞邮件服务器，百度找到个叫U-mail的东西。 进了官网，感觉挺好，脑子抽了，直接生产环境上装了，发现很垃圾，卸载。 rpm一看，包很多，写了个脚本一键删了。   删完重启，心想生产环境不会被他弄坏吧。一看wp，完蛋了，打不开了。 看了下本地服务器上的数据库备份。发现最新的备份是3月8号的。  我4，5月份写了那么多笔记啊！！！！！！！ 开始想办法恢复数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次灾难性的mysql数据恢复">
+<meta property="og:url" content="https://blog.jinzz.cc/84aa0081eb21/index.html">
+<meta property="og:site_name" content="Jindom&#39;s Blog">
+<meta property="og:description" content="2018年5月21日，吃饱了没事干，想搞邮件服务器，百度找到个叫U-mail的东西。 进了官网，感觉挺好，脑子抽了，直接生产环境上装了，发现很垃圾，卸载。 rpm一看，包很多，写了个脚本一键删了。   删完重启，心想生产环境不会被他弄坏吧。一看wp，完蛋了，打不开了。 看了下本地服务器上的数据库备份。发现最新的备份是3月8号的。  我4，5月份写了那么多笔记啊！！！！！！！ 开始想办法恢复数据。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.jinzz.cc/images/cover11.jpg">
+<meta property="article:published_time" content="2018-05-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-01T08:43:16.052Z">
+<meta property="article:author" content="Jindom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.jinzz.cc/images/cover11.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://blog.jinzz.cc/84aa0081eb21/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '记一次灾难性的mysql数据恢复',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-06-01 16:43:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/cover11.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jindom's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">记一次灾难性的mysql数据恢复</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-05-21T00:00:00.000Z" title="发表于 2018-05-21 08:00:00">2018-05-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T08:43:16.052Z" title="更新于 2021-06-01 16:43:16">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="记一次灾难性的mysql数据恢复"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>2018年5月21日，吃饱了没事干，想搞邮件服务器，百度找到个叫U-mail的东西。</p>
+<p>进了官网，感觉挺好，脑子抽了，直接生产环境上装了，发现很垃圾，卸载。</p>
+<p>rpm一看，包很多，写了个脚本一键删了。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/1.png"> <img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/2.png"></p>
+<p>删完重启，心想生产环境不会被他弄坏吧。一看wp，完蛋了，打不开了。</p>
+<p>看了下本地服务器上的数据库备份。发现最新的备份是3月8号的。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/3.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/emote.png">我4，5月份写了那么多笔记啊！！！！！！！</p>
+<p>开始想办法恢复数据。</p>
+<p>systemstl status mysql</p>
+<p>发现mysql这个服务都不存在了，完蛋。</p>
+<p>cd /usr/local/mysql</p>
+<p>看一下物理目录还在吗，能进去，还在。</p>
+<p>数据库的数据文件一般保存在/usr/local/mysql/var/数据库名字 内，进去看了一下，文件都在。</p>
+<p>.idb格式的是数据内容  .frm格式的是数据结构</p>
+<p>现在要做的就是把这些东西恢复成数据库的数据。</p>
+<p>换了台机子，重新装了mysql同版本，进了/usr/local/mysql/var 把原机子上的数据库源文件复制进去，重启数据库，数据库直接报错。</p>
+<p>网上查了下，说是改一下/etc/my.cnf文件，添加innodb_force_recovery=1-6 就可以了。试了一遍，不行。痛苦。</p>
+<p>后来问了下猫叔。猫叔给了个链接，并祝我好运。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/4.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xj2015/p/7479999.html">https://www.cnblogs.com/xj2015/p/7479999.html</a></p>
+<p>简述一下操作流程。。。</p>
+<p>首先查看一下/etc/my.cnf中的innodb_file_per_table值是不是1</p>
+<p>如果是1的话有可能用自动化工具修好，不是1的话只能手动修复。</p>
+<p>看了下我的，发现是1，试一下自动工具。</p>
+<p><a target="_blank" rel="noopener" href="http://wp.jinzz.cc/wp-content/uploads/2018/05/mysqlibd.zip">mysqlibd</a></p>
+<p>此工具需要Windows环境 .net4.x版本、MySQL5.6的最新版本。</p>
+<p>mysql5.6.40  <a target="_blank" rel="noopener" href="http://125.71.5.35:2333/index.php?share/file&amp;user=1&amp;sid=bagrDdQw">http://125.71.5.35:2333/index.php?share/file&amp;user=1&amp;sid=bagrDdQw</a></p>
+<p>工具使用方式：</p>
+<blockquote>
+<p>InnoDBRestore <username> <password> <port> <srcdir> <destDB></p>
+<p>例如</p>
+<p>InnoDBRestore root pass 3306 c:\dbcopy my_database</p>
+</blockquote>
+<p>祝好运吧。如果运气好，无报错， c:\dbcopy 下的MyISAM和InnoDB数据都会被导入 my_database（my_database不需要提前创建）。</p>
+<p>然而你可能会和我一样，遇上了数据错误（天知道为什么），导入过程可能会报错。这些报错很可能是连接被关闭</p>
+<blockquote>
+<p>restoring : wp_posts.frm</p>
+<p>unknown error:MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered during command execution. —&gt; MySql.Data.MySqlClient.MySqlException (0x80004005): Fatal error encountered attempting to read the resultset. —&gt; MySql.Data.MySqlClient.MySqlException (0x80004005): Reading from the stream has failed. —&gt; System.IO.IOException: 无法从传输连接中读取数据: 远程主机强迫关闭了一个现有的连接。。 —&gt; System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。</p>
+</blockquote>
+<p>然后同时，查看数据库的err日志，可能会有类似以下报错：</p>
+<blockquote>
+<p>InnoDB: Error: trying to access page number 1372160 in space 1, InnoDB: space name recovery1/wp_posts, InnoDB: which is outside the tablespace bounds. InnoDB: Byte offset 0, len 16384, i/o type 10. InnoDB: If you get this error at mysqld startup, please check that InnoDB: your my.cnf matches the ibdata files that you have in the InnoDB: MySQL server.</p>
+</blockquote>
+<p>由于InnoDB引擎遇上了异常，MySQL崩溃退出，导致连接断开。这种情况下，到MySQL的data目录下，删除刚才导入的数据库的文件夹以及ib_logfile0、ib_logfile1、ibdata1（也就是重置所有InnoDB引擎相关数据）。然后再启动MySQL。</p>
+<p>将引发故障的表文件(ibd、frm)单独移出来，留作阶段2修复使用，再次执行InnoDBRestore，如再遇上故障重复以上步骤，直到工具不再报错为止。</p>
+<p>使用mysqldump将表导出来。<strong>建议添加–skip-extended-insert参数以便数据检查，如果上面一切都顺利，无论是导入还是导出都没有任何报错，也需要仔细检查恢复出来的数据是否有异常（很大的负数、数据参杂乱码、不合理的日期等），有些情况下会有隐性损坏情况。如果没有，那么恭喜你数据就恢复完成了，不需要继续向下阅读了</strong></p>
+<p>……然而你可能像我一样，导出时再次遇上相似故障</p>
+<blockquote>
+<p>ERROR 2013 (HY000): Lost connection to MySQL server during query</p>
+</blockquote>
+<p>查看err日志后，发现另一个原先看起来成功导入的ibd文件dump时由于数据错误也失败了，修改my.cnf，添加innodb_force_recovery=6。然后再重新启动，再次尝试dump查看是否成功，如成功需要仔细检查是否数据正确。如果连 innodb_force_recovery=6 也无法获得正确数据的话，只能跳过出故障的表，将其余正常的表导出。出故障的表通过第二阶段进行修复。</p>
+<p>总的来说，我wp_posts这张表挂了，无法用自动工具修复，在数据库中想要查看这张表，数据库就会崩溃。</p>
+<p>只能尝试手动修复这张表了。</p>
+<p>要用到工具<a target="_blank" rel="noopener" href="https://github.com/chhabhaiya/undrop-for-innodb">https://github.com/chhabhaiya/undrop-for-innodb</a> 并且要在有mysql环境的linux上运行。</p>
+<p>安装undrop-for-innodb工具，只需要执行make命令进行编译，很简单也非常快。</p>
+<p>该工具可用于很多 InnoDB 灾难性数据丢失场景的<strong>数据库救援</strong>。救援的意思是尽量恢复数据，通常需要这个工具的场合都是很糟糕的，运气好的情况下你或许能全部提取出。因此无论如何依然不能直接拷贝InnoDB数据库。p.s.今年1月此工具停止进一步开发了，很可惜</p>
+<p>make编译后会在其目录生成以下可执行工具：</p>
+<blockquote>
+<p>c_parser innochecksum_changer stream_parser</p>
+</blockquote>
+<p>1.使用</p>
+<blockquote>
+<p>./stream_parser -f wp_posts.ibd</p>
+</blockquote>
+<p>拆出ibd文件结构</p>
+<p>2.使用mysqlfrm拆出包含表结构的CREATE TABLE语句，在第一阶段 zcgonvh的工具里有一个Windows的MySqlFrm.exe亦可使用，这里以该工具为例。Linux的 mysqlfrm可以参考下面本文后杂记</p>
+<blockquote>
+<p>mysqlfrm <username> <password> <port> <srcdir> 例如： mysqlfrm root pass 3306 c:\dbcopy</p>
+</blockquote>
+<p>会在同目录下对每个frm文件生成一个.sql文件 内含创建表语句。<strong>注意该工具生成的CREATE TABLE语句不含分号，会对之后操作造成影响，需要在语句末尾添加一个分号</strong></p>
+<p>3.拆出的ibd文件结构会存储在pages-wp_posts.ibd里。包含以下子目录：</p>
+<blockquote>
+<p>FIL_PAGE_INDEX：一般PAGE，依照其ID存放</p>
+<p>FIL_PAGE_TYPE_BLOB： 如果遇上较大的数据（例如comments里有text类型的数据并且内容较多），InnoDB会使用BLOB类PAGE存储数据。<strong>需检查此目录是否有文件。如有，说明此表使用了BLOB，之后提取命令需要用-b参数指定此目录进行提取</strong></p>
+</blockquote>
+<p>按照步骤1拆分ibdata1，然后编辑recover_dictionary.sh脚本里的mysql命令行 在后面加上 -u root -p密码</p>
+<p>然后执行此脚本，会将SYS系列表导入test数据库</p>
+<p>使用mysql命令行进入<strong>test</strong>数据库后，执行：</p>
+<p>mysql&gt; select * from SYS_TABLES where NAME like “%/wp_posts”;</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/5.png"></p>
+<p>此table的ID为116，然后执行</p>
+<p>mysql&gt;  SELECT * FROM SYS_INDEXES where table_id=116;</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/6.png"></p>
+<p>即可获得主键的index_id为218，因此对应的page是：pages-wp_posts.ibd/FIL_PAGE_INDEX/00000000<strong>00000218</strong>.page。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/7.png"></p>
+<p>如果没有ibddata1的情况下就没法用工具判断id了，只能一个一个猜了</p>
+<p>使用c_parser命令对每个page尝试提取。此表数据结构是COMPACT，因而使用参数-5。如果是MYSQL5.6以上的格式用-6。不确定的话5和6都试下</p>
+<p>本例BLOB目录下有文件，需要-b参数指定BLOB目录以确保数据完整。</p>
+<p>步骤2得到的表结构定义（CREATE TABLE）放在 wp_posts.frm.sql</p>
+<p>将输出指向到less以便阅读：</p>
+<blockquote>
+<p>[root@Test undrop-for-innodb]#./c_parser <strong>-5</strong>f ./pages-wp_posts.ibd/FIL_PAGE_INDEX/<strong>XXXXX</strong>.page <strong>-b</strong> ./pages-wp_posts.ibd/FIL_PAGE_TYPE_BLOB/ -t ./<strong>wp_posts.frm.sql</strong> | less</p>
+</blockquote>
+<p>XXXXX替换成具体的page编号，建议从头开始尝试（对两个有类似问题的表修复的结果似乎暗示第一个的成功概率最高），<strong>直到获得了明显正确的结果（日期正确 大部分数据正常 Records list为Valid）</strong></p>
+<p>c_parser会将tsv数据dump到标准输出管道，并且很贴心的将对应数据恢复SQL命令特意单独输出到了错误输出（某个N年未更新的工具还需要自行构建命令导入）。可以使用以下命令对含有正确数据索引的page做最终导出：</p>
+<blockquote>
+<p>./c_parser -5f pages-wp_posts.ibd/FIL_PAGE_INDEX/0000000000224178.page -b pages-wp_posts.ibd/FIL_PAGE_TYPE_BLOB/ -t wp_posts.frm.sql <strong>&gt; wp_posts 2&gt; wp_posts.sql</strong></p>
+</blockquote>
+<p>会得到</p>
+<p>wp_posts：提取出来的tsv格式数据 wp_posts.sql：将tsv导入数据库的SQL命令</p>
+<p>编辑器打开这两个文件，可以看到wp_posts.sql实际上保存了原先数据表的结构</p>
+<p>wp_posts则是保存了具体数据。</p>
+<p>我们需要将这两个文件挪到/tmp文件夹（规避权限问题），然后修改 wp_posts.sql 内的LOAD DATA LOCAL INFILE路径，使之符合新的tsv文件路径。</p>
+<p>之后要做的就很简单了</p>
+<p>新建一个和原先表结构完全一样的表，然后SOURCE /tmp/wp_posts.sql;就能将数据导进数据库了。</p>
+<p>最后dump出来，就是标准的SQL格式了。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/8.png"></p>
+<p>能正常访问了！</p>
+<p>弄完一想，如果以后渗透的时候，机子权限有了，但是没数据库权限，可以把idb文件和frm文件搞下来，然后离线脱裤！不错不错:)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Jindom</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.jinzz.cc/84aa0081eb21/">https://blog.jinzz.cc/84aa0081eb21/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.jinzz.cc" target="_blank">Jindom's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/cover11.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/c461c41662ed/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PWK-LAB 10.11.1.31 RALPH攻略</div></div></a></div><div class="next-post pull-right"><a href="/cc22c612ebf9/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PWK-LAB 10.11.1.10 Mike攻略</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Jindom</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jindom"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jindom" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jinzz@jinzz.cc" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/333a4773e2de/" title="Hi Hexo!"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hi Hexo!"/></a><div class="content"><a class="title" href="/333a4773e2de/" title="Hi Hexo!">Hi Hexo!</a><time datetime="2021-06-03T16:00:00.000Z" title="发表于 2021-06-04 00:00:00">2021-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx启用Alt-Svc加速网站访问速度"/></a><div class="content"><a class="title" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度">Nginx启用Alt-Svc加速网站访问速度</a><time datetime="2021-02-20T00:00:00.000Z" title="发表于 2021-02-20 08:00:00">2021-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AD拿域控权限的方法整理"/></a><div class="content"><a class="title" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理">AD拿域控权限的方法整理</a><time datetime="2020-10-26T00:00:00.000Z" title="发表于 2020-10-26 08:00:00">2020-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"/></a><div class="content"><a class="title" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署">Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署</a><time datetime="2020-09-24T00:00:00.000Z" title="发表于 2020-09-24 08:00:00">2020-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/f5858198c6fa/" title="蓝队实战笔记"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝队实战笔记"/></a><div class="content"><a class="title" href="/f5858198c6fa/" title="蓝队实战笔记">蓝队实战笔记</a><time datetime="2020-08-15T00:00:00.000Z" title="发表于 2020-08-15 08:00:00">2020-08-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;1949 - 2021 By Jindom</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/eucyopvw8zt034ovoshroc4kci4qpweh.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

